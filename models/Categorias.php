@@ -2,20 +2,19 @@
 
 namespace Model;
 
-class Categorias extends ActiveRecord {
+class Categoria extends ActiveRecord {
 
-    public static $tabla = 'categorias';
+    public static $tabla = 'categoria';
     public static $columnasDB = [
-        'id',
-        'nombre'
+        'categoria_nombre'
     ];
 
-    public static $idTabla = 'id';
-    public $id;
-    public $nombre;
+    public static $idTabla = 'categoria_id';
+    public $categoria_id;
+    public $categoria_nombre;
 
     public function __construct($args = []){
-        $this->id = $args['id'] ?? null;
-        $this->nombre = $args['nombre'] ?? '';
+        $this->categoria_id = $args['categoria_id'] ?? null;
+        $this->categoria_nombre = $args['categoria_nombre'] ?? '';
     }
 }

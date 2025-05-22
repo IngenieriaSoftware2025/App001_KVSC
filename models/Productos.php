@@ -28,19 +28,10 @@ class Productos extends ActiveRecord {
         $this->producto_prioridad = $args['producto_prioridad'] ?? 0;
     }
 
-    public static function obtenerConCategoriaYPrioridad() {
-        $query = "SELECT p.*, c.categoria_nombre, pr.prioridad_nombre 
-                  FROM " . static::$tabla . " p
-                  JOIN categoria c ON p.producto_categoria = c.categoria_id
-                  JOIN prioridad pr ON p.producto_prioridad = pr.prioridad_id
-                  ORDER BY p.producto_comprado ASC, c.categoria_nombre ASC, p.producto_prioridad ASC";
-        
-        return static::fetchArray($query);
-    }
-
+    // CORREGIDO: queries usando nombres correctos de tablas
     public static function obtenerAgrupadosPorCategoria() {
         $query = "SELECT p.*, c.categoria_nombre, pr.prioridad_nombre 
-                  FROM " . static::$tabla . " p
+                  FROM producto p
                   JOIN categoria c ON p.producto_categoria = c.categoria_id
                   JOIN prioridad pr ON p.producto_prioridad = pr.prioridad_id
                   WHERE p.producto_comprado = 0
@@ -62,17 +53,12 @@ class Productos extends ActiveRecord {
 
     public static function obtenerComprados() {
         $query = "SELECT p.*, c.categoria_nombre, pr.prioridad_nombre 
-                  FROM " . static::$tabla . " p
+                  FROM producto p
                   JOIN categoria c ON p.producto_categoria = c.categoria_id
                   JOIN prioridad pr ON p.producto_prioridad = pr.prioridad_id
                   WHERE p.producto_comprado = 1
                   ORDER BY c.categoria_nombre ASC";
         
         return static::fetchArray($query);
-    }
-
-    public function marcarComoComprado() {
-        $this->producto_comprado = 1;
-        return $this->actualizar();
     }
 }

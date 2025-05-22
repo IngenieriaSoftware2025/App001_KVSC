@@ -21,32 +21,32 @@
                                 <input type="number" class="form-control" id="producto_cantidad" name="producto_cantidad" placeholder="Ingrese aqui la cantidad Eje. '5' " min="1">
                             </div>
                         </div>
-
-                        <div class="row mb-3 justify-content-center">
-                            <div class="col-lg-6">
-                                <label for="categoria_id" class="form-label">CATEGORÍA</label>
-                              <select name="categoria_id" class="form-select" id="categoria_id">
-                                    <option value="" class="text-center"> -- SELECCIONE CATEGORÍA -- </option>
-                                    <?php foreach($categorias as $c): ?>
-                                        <option value="<?= $c->id ?>"><?= $c->nombre ?></option>
-                                    <?php endforeach; ?>
-                                </select>
+                            <div class="row mb-3 justify-content-center">
+                                <div class="col-lg-6">
+                                    <label for="producto_categoria" class="form-label">CATEGORÍA</label>
+                                    <select name="producto_categoria" class="form-select" id="producto_categoria">
+                                        <option value="" class="text-center">-- SELECCIONE LA CATEGORÍA --</option>
+                                        <?php if (isset($categorias) && !empty($categorias)): ?>
+                                            <?php foreach($categorias as $categoria): ?>
+                                                <option value="<?= $categoria['categoria_id'] ?>"><?= $categoria['categoria_nombre'] ?></option>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </select>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="producto_prioridad" class="form-label">PRIORIDAD</label>
+                                    <select name="producto_prioridad" class="form-select" id="producto_prioridad">
+                                        <option value="" class="text-center">-- SELECCIONE LA PRIORIDAD --</option>
+                                        <option value="1">ALTA</option>
+                                        <option value="2">MEDIA</option>
+                                        <option value="3">BAJA</option>
+                                    </select>
+                                </div>
                             </div>
-                         </div>
-                            <div class="col-lg-6">
-                                <label for="producto_prioridad" class="form-label">PRIORIDAD</label>
-                                <select name="producto_prioridad" class="form-select" id="producto_prioridad">
-                                    <option value="" class="text-center">-- SELECCIONE LA PRIORIDAD --</option>
-                                    <option value="1">ALTA</option>
-                                    <option value="2">MEDIA</option>
-                                    <option value="3">BAJA</option>
-                                </select>
-                            </div>
-                        </div>
 
                         <div class="row justify-content-center mt-5">
                             <div class="col-auto">
-                                <button class="btn btn-success" type="submit" id="BtnGuardar">
+                                <button class="btn btn-thistle" type="submit" id="BtnGuardar">
                                     Guardar
                                 </button>
                             </div>
@@ -89,4 +89,4 @@
         </div>
     </div>
 </div>
-<script src="<?= asset('build/js/productos/index.js') ?>"></script>
+<script src="/App001_KVSC/public/build/js/productos/index.js"></script>

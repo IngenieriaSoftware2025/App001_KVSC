@@ -11,10 +11,20 @@
         body{
             background-color:rgb(240, 199, 234);
         }
-        .btn-pink {
+        .btn-thistle {
             background-color: palevioletred; 
             color: black; 
             border-color: pink; 
+        }
+        .btn-pink {
+            background-color: papayawhip; 
+            color: black; 
+            border-color: purple; 
+        }
+        .btn-midni {
+            background-color: midnightblue;
+            color: white;
+            border-color: thistle;
         }
     </style>
 </head>

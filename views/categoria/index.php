@@ -20,7 +20,7 @@
 
                         <div class="row justify-content-center mt-5">
                             <div class="col-auto">
-                                <button class="btn btn-success" type="submit" id="BtnGuardar">
+                                <button class="btn btn-thistle" type="submit" id="BtnGuardar">
                                     Guardar
                                 </button>
                             </div>

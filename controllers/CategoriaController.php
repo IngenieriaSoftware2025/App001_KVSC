@@ -4,12 +4,12 @@ namespace Controllers;
 
 use Exception;
 use Model\ActiveRecord;
-use Model\Categorias;
+use Model\Categoria;
 use MVC\Router;
 
 class CategoriaController extends ActiveRecord
 {
-    public function renderizarPagina(Router $router)
+    public static function renderizarPagina(Router $router)
     {
         $router->render('categoria/index', []);
     }
@@ -32,7 +32,7 @@ class CategoriaController extends ActiveRecord
         }
 
         try {
-            $data = new Categorias([
+            $data = new Categoria([
                 'categoria_nombre' => $_POST['categoria_nombre']
             ]);
 
@@ -95,7 +95,7 @@ class CategoriaController extends ActiveRecord
         }
 
         try {
-            $data = Categorias::find($id);
+            $data = Categoria::find($id);
             $data->sincronizar([
                 'categoria_nombre' => $_POST['categoria_nombre']
             ]);
@@ -136,7 +136,7 @@ class CategoriaController extends ActiveRecord
         }
 
         try {
-            $categoria = Categorias::find($id);
+            $categoria = Categoria::find($id);
             $categoria->eliminar();
 
             http_response_code(200);
