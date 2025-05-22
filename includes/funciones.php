@@ -7,13 +7,11 @@ function debuguear($variable) {
     exit;
 }
 
-// Escapa / Sanitizar el HTML
 function s($html) {
     $s = htmlspecialchars($html);
     return $s;
 }
 
-// Función que revisa que el usuario este autenticado
 function isAuth() {
     session_start();
     if(!isset($_SESSION['login'])) {
