@@ -26,6 +26,31 @@
             color: white;
             border-color: thistle;
         }
+        .table {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .table thead th {
+            background-color:rgb(11, 1, 56);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.8rem;
+            padding: 1rem;
+            border: none;
+        }
+
+        .table tbody td {
+            padding: 0.875rem;
+            vertical-align: middle;
+            border-color: #f3f4f6;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f9fafb;
+        }
     </style>
 </head>
 <body>

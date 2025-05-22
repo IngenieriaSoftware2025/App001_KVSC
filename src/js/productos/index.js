@@ -1,69 +1,3 @@
-import { Dropdown } from "bootstrap";
-import Swal from "sweetalert2";
-import { validarFormulario, Toast } from '../funciones';
-import DataTable from "datatables.net-bs5";
-import { lenguaje } from "../lenguaje";
-
-const FormProductos = document.getElementById('FormProductos');
-const BtnGuardar = document.getElementById('BtnGuardar');
-const BtnModificar = document.getElementById('BtnModificar');
-const BtnLimpiar = document.getElementById('BtnLimpiar');
-
-// Función para guardar un producto
-const GuardarProducto = async (event) => {
-    event.preventDefault();
-    BtnGuardar.disabled = true;
-
-    if (!validarFormulario(FormProductos, ['producto_id'])) {
-        Swal.fire({
-            position: "center",
-            icon: "info",
-            title: "FORMULARIO INCOMPLETO",
-            text: "Debe completar todos los campos",
-            showConfirmButton: true,
-        });
-        BtnGuardar.disabled = false;
-        return;
-    }
-
-    const body = new FormData(FormProductos);
-    const url = '/App001_KVSC/productos/guardarAPI';
-    const config = {
-        method: 'POST',
-        body
-    }
-
-    try {
-        const respuesta = await fetch(url, config);
-        const datos = await respuesta.json();
-        const { codigo, mensaje } = datos;
-
-        if (codigo == 1) {
-            await Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Éxito",
-                text: mensaje,
-                showConfirmButton: true,
-            });
-
-            limpiarTodo();
-            BuscarProductos();
-        } else {
-            await Swal.fire({
-                position: "center",
-                icon: "info",
-                title: "Error",
-                text: mensaje,
-                showConfirmButton: true,
-            });
-        }
-    } catch (error) {
-        console.log(error);
-    }
-    BtnGuardar.disabled = false;
-}
-
 // Función para buscar productos
 const BuscarProductos = async () => {
     const url = '/App001_KVSC/productos/buscarAPI';
@@ -252,9 +186,9 @@ const ModificarProducto = async (event) => {
     if (!validarFormulario(FormProductos, [''])) {
         Swal.fire({
             position: "center",
-            icon: "info",
-            title: "FORMULARIO INCOMPLETO",
-            text: "Debe completar todos los campos",
+            icon: "¡Oh no!",
+            title: "El formulario esta incompleto",
+            text: "Debes completar todos los campos",
             showConfirmButton: true,
         });
         BtnModificar.disabled = false;

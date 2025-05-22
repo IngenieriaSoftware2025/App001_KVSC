@@ -7,7 +7,6 @@ class ActiveRecord {
     protected static $db;
     protected static $tabla = '';
     protected static $columnasDB = [];
-
     protected static $idTabla = '';
 
     // Alertas y Mensajes
@@ -161,7 +160,8 @@ class ActiveRecord {
     // Eliminar un registro - Toma el ID de Active Record
     public function eliminar() {
         $idQuery = static::$idTabla ?? 'id';
-        $query = "DELETE FROM "  . static::$tabla . " WHERE $idQuery = " . self::$db->quote($this->id);
+        $idValue = $this->$idQuery;
+        $query = "DELETE FROM "  . static::$tabla . " WHERE $idQuery = " . self::$db->quote($this->$idQuery);
         $resultado = self::$db->exec($query);
         return $resultado;
     }

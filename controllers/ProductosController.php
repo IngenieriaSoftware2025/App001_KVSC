@@ -94,6 +94,68 @@ class ProductosController extends ActiveRecord
             ]);
         }
     }
+
+     public static function modificarAPI()
+    {
+        getHeadersApi();
+
+        try {
+            if (empty($_POST['producto_id'])) {
+                throw new Exception("ID del producto no proporcionado");
+            }
+
+            if (empty($_POST['producto_nombre'])) {
+                throw new Exception("El nombre del producto es requerido");
+            }
+            
+            if (empty($_POST['producto_cantidad']) || $_POST['producto_cantidad'] <= 0) {
+                throw new Exception("La cantidad debe ser mayor a cero");
+            }
+            
+            if (empty($_POST['producto_categoria'])) {
+                throw new Exception("Debes seleccionar una categoría");
+            }
+            
+            if (empty($_POST['producto_prioridad'])) {
+                throw new Exception("Debes seleccionar una prioridad");
+            }
+
+            $producto = Productos::find($_POST['producto_id']);
+            
+            if (!$producto) {
+                throw new Exception("Producto no encontrado");
+            }
+
+            $producto->sincronizar([
+                'producto_nombre' => $_POST['producto_nombre'],
+                'producto_cantidad' => (int)$_POST['producto_cantidad'],
+                'producto_categoria' => (int)$_POST['producto_categoria'],
+                'producto_prioridad' => (int)$_POST['producto_prioridad']
+            ]);
+
+            $resultado = $producto->actualizar();
+            
+            if (!$resultado) {
+                throw new Exception("Error al actualizar el producto");
+            }
+            
+            http_response_code(200);
+            echo json_encode([
+                'codigo' => 1,
+                'mensaje' => '¡Producto actualizado correctamente!'
+            ]);
+            
+        } catch (Exception $e) {
+            error_log("Error en modificarAPI: " . $e->getMessage());
+            
+            http_response_code(400);
+            echo json_encode([
+                'codigo' => 0,
+                'mensaje' => $e->getMessage()
+            ]);
+        }
+    }
+
     public static function comprarAPI()
 {
     getHeadersApi();
