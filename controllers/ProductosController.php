@@ -10,7 +10,6 @@ class ProductosController extends ActiveRecord
 {
     public static function renderizarPagina(Router $router)
     {
-        // Obtener categorías para el select
         $categorias = self::fetchArray("SELECT * FROM categoria ORDER BY categoria_nombre");
         
         $router->render('productos/index', [

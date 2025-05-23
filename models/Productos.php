@@ -28,7 +28,6 @@ class Productos extends ActiveRecord {
         $this->producto_prioridad = $args['producto_prioridad'] ?? 0;
     }
 
-    // CORREGIDO: queries usando nombres correctos de tablas
     public static function obtenerAgrupadosPorCategoria() {
         $query = "SELECT p.*, c.categoria_nombre, pr.prioridad_nombre 
                   FROM producto p

@@ -1,12 +1,10 @@
 <?php
-
 namespace Controllers;
 
 use Exception;
 use Model\ActiveRecord;
 use Model\Categoria;
 use MVC\Router;
-
 class CategoriaController extends ActiveRecord
 {
     public static function renderizarPagina(Router $router)
@@ -18,7 +16,6 @@ class CategoriaController extends ActiveRecord
     {
         getHeadersApi();
 
-        // Validar nombre de la categoría
         $_POST['categoria_nombre'] = htmlspecialchars($_POST['categoria_nombre']);
         $cantidad_nombre = strlen($_POST['categoria_nombre']);
 
@@ -81,7 +78,6 @@ class CategoriaController extends ActiveRecord
 
         $id = $_POST['categoria_id'];
 
-        // Validar nombre de la categoría
         $_POST['categoria_nombre'] = htmlspecialchars($_POST['categoria_nombre']);
         $cantidad_nombre = strlen($_POST['categoria_nombre']);
 
@@ -122,7 +118,6 @@ class CategoriaController extends ActiveRecord
 
         $id = $_POST['categoria_id'];
 
-        // Verificar si hay productos que usan esta categoría
         $sql = "SELECT COUNT(*) as total FROM producto WHERE producto_categoria = {$id}";
         $resultado = self::fetchArray($sql);
         
